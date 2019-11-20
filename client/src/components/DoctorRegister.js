@@ -5,7 +5,7 @@ export default class DoctorRegister extends Component {
         return (
             <div>
                 <h2>Please fill the form to complete your profile</h2>
-
+                
             </div>
         )
     }
