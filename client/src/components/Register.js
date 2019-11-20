@@ -9,13 +9,20 @@ class Register extends Component {
       last_name: "",
       email: "",
       password: "",
+      role:"",
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
+  onInputChange = event => {
+    console.log(event.target.value);
+    this.setState({
+      role: event.target.value
+    });
+    
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -26,10 +33,12 @@ class Register extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      role: this.state.role
     };
-
+    console.log("user info ",newUser);
     register(newUser).then(res => {
+      alert("Please Login with this ID "+ res);
       this.props.history.push(`/login`);
     });
   }
@@ -85,6 +94,16 @@ class Register extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="form-group">
+              <label htmlFor="roles">Select Role</label>
+                    <select className="form-control" id="profile" value={this.state.value} onChange={this.onInputChange} 
+                         placeholder="Enter usertype">
+                        <option value="default" defaultValue>Select</option>  
+                        <option value="Doctor">Doctor</option>
+                        <option value="Patient">Patient</option>
+                        <option value="Cashier">Cashier</option>
+                    </select>
+                </div>
               <button
                 type="submit"
                 className="btn btn-lg btn-primary btn-block"

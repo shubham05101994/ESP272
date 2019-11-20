@@ -2,13 +2,15 @@ import axios from "axios";
 
 export const register = async newUser => {
   const response = await axios
-    .post("users/register", {
+    .post("/register", {
       first_name: newUser.first_name,
       last_name: newUser.last_name,
       email: newUser.email,
-      password: newUser.password
+      password: newUser.password,
+      role:newUser.role
     });
-  console.log("Registered");
+    return response.data;
+  
 };
 
 export const uploadfileuserinfo =  async fileuserinfo => {
@@ -268,3 +270,4 @@ export const returnallfiles =  async emailid => {
      });
   // console.log(response);
  };
+ 
