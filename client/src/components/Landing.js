@@ -10,7 +10,7 @@ class Landing extends Component {
             <h4 className="text-center">WELCOME TO</h4>
             <div>
             
-            <h1 className="text-center name_app">Trending Music Dashboard</h1>
+            <h1 className="text-center name_app">MedicoConnect</h1>
             </div>
           </div>
         </div>
