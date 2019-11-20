@@ -1,0 +1,35 @@
+-- Create Table---
+CREATE TABLE RegisterInfos (
+	ID INT NOT NULL AUTO_INCREMENT,
+    First_Name VARCHAR(100) NOT NULL,
+	Last_Name VARCHAR(100) NOT NULL,
+    Email TEXT NOT NULL,
+    Password TEXT NOT NULL,
+    Role VARCHAR(50) NOT NULL,
+    Created TEXT,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE DoctorInfos (
+     DrID INT NOT NULL,
+     Degree VARCHAR(100) NOT NULL,
+     Specialization VARCHAR(50) NOT NULL,
+     YearOfExperience VARCHAR(20) NOT NULL,
+     Address VARCHAR(300) NOT NULL,
+     Contact VARCHAR(20) NOT NULL,
+     Gender CHAR(1),
+     FOREIGN KEY (DrID)
+      REFERENCES RegisterInfos(ID)
+);
+
+---Insert query---
+insert into MedicoConnect.DoctorInfos values('1','MBBS','General Physician','2','San Jose','123456789','M');
+insert into MedicoConnect.DoctorInfos values('4','MD','Child Specialist','5','Santa clara','123456799','F');
+
+-- Query for Specialization dropdown---
+SELECT DISTINCT Specialization from MedicoConnect.DoctorInfos;
+
+-- Query for Doctor Name dropdown--
+SELECT CONCAT(FIRST_NAME,' ',LAST_NAME) FROM MedicoConnect.RegisterInfos WHERE ID IN (
+	SELECT DrID FROM MedicoConnect.DoctorInfos WHERE Specialization = 'General Physician'
+);
