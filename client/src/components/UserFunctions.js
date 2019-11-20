@@ -39,13 +39,15 @@ export const uploadfileuserinfo =  async fileuserinfo => {
 export const login = async user => {
   try {
     const response = await axios
-      .post("users/login", {
+      .post("register/login", {
+        id:user.userid,
         email: user.email,
-        password: user.password
+        Password: user.password 
       });
     console.log('login response', response);
-    localStorage.setItem("usertoken", response.data);
+    localStorage.setItem("usertoken", response.data.token1);
     localStorage.setItem("email", user.email);
+    localStorage.setItem("role", response.data.user.Role);
     return response.data;
   }
   catch (err) {

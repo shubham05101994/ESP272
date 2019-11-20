@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 const User = require("../models/modelRegister");
 users.use(cors());
-
+process.env.SECRET_KEY = "secret";
 users.post("/", (req, res) => {
   const today = new Date();
     const ss = today.toDateString()+" "+today.getHours() +":"+today.getMinutes()+":" +today.getSeconds();
@@ -46,6 +46,37 @@ users.post("/", (req, res) => {
       .catch(err => {
         res.send("error: " + err);
       });
-  });
+});
+
+users.post("/login", (req, res) => {
+  User.findOne({
+    where: {
+      ID: req.body.id,
+      Email: req.body.email
+    }
+  })
+    .then(user => {
+
+      console.log(user);
+      if (user) {
+        if (bcrypt.compareSync(req.body.Password, user.Password)) {
+          let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+            expiresIn: 1440
+          });
+          let alldata={
+            token1:token,
+            user:user
+          }
+         // console.log('token', alldata);
+          res.send(alldata);
+        }
+      } else {
+        res.status(400).json({ error: "User does not exist" });
+      }
+    })
+    .catch(err => {
+      res.status(400).json({ error: err });
+    });
+});
 
   module.exports = users;

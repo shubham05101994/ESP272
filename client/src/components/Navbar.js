@@ -9,6 +9,7 @@ class Landing extends Component {
     localStorage.removeItem("facebookresponeemail");
     localStorage.removeItem("facebookresponename");
     localStorage.removeItem("email");
+    localStorage.removeItem("role");
     this.props.history.push(`/`);
   }
 
@@ -27,8 +28,34 @@ class Landing extends Component {
         </li>
       </ul>
     );
-
-    const adminLink = (
+    const doctor = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/doctorregister" className="nav-link">
+            Doctor
+          </Link>
+        </li>
+      </ul>
+    );
+    const patient = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/patient" className="nav-link">
+            Patient
+          </Link>
+        </li>
+      </ul>
+    );
+    const cashier = (
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/cashier" className="nav-link">
+          Cashier
+          </Link>
+        </li>
+      </ul>
+    );
+  /*  const adminLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/admin" className="nav-link">
@@ -50,20 +77,9 @@ class Landing extends Component {
           </Link>
         </li>               
       </ul>
-    );
+    );*/
     const userLink = (
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/profile" className="nav-link">
-            User
-          </Link>
-        </li>
-        
-        <li className="nav-item">
-          <Link to="/chatbot" className="nav-link">
-            Chatbot
-          </Link>
-        </li>
         <li className="nav-item">
           <a href="" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
@@ -99,8 +115,10 @@ class Landing extends Component {
             </li>
           </ul>
           {localStorage.usertoken || localStorage.facebookresponeemail ? userLink : loginRegLink}
-          {localStorage.usertoken || localStorage.facebookresponeemail ? userdashboard : ""}
-          {localStorage.email=="admin@cloud.com" ? adminLink : ""}
+          
+          {localStorage.role=="Doctor" ? doctor : ""}
+          {localStorage.role=="Patient" ? patient : ""}
+          {localStorage.role=="Cashier" ? cashier : ""}
           
         </div>
       </nav>

@@ -8,6 +8,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      userid:"",
       errors: {}
     };
 
@@ -22,16 +23,23 @@ class Login extends Component {
     e.preventDefault();
 
     const user = {
+      userid:this.state.userid,
       email: this.state.email,
       password: this.state.password
     };
 
     login(user).then(res => {
       if (res) {
-        if (user.email=='admin@cloud.com') {
-          this.props.history.push(`/admin`);
-        } else {
-          this.props.history.push(`/profile`);
+        if (res.user.Role=="Doctor") {
+          this.props.history.push(`/doctorregister`);
+        } else if(res.user.Role=="Patient"){
+          this.props.history.push(`/patient`);
+        }
+        else if(res.user.Role=="Cashier"){
+          this.props.history.push(`/cashier`);
+        }
+        else{
+          this.props.history.push(`/`);
         }
         
       } else {
@@ -47,6 +55,17 @@ class Login extends Component {
           <div className="col-md-6 mt-5 mx-auto" style={{textAlign:'left'}}>
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+              <div className="form-group">
+                <label htmlFor="id">Login ID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="userid"
+                  placeholder="Enter UserID"
+                  value={this.state.userid}
+                  onChange={this.onChange}
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="email">Email address</label>
                 <input

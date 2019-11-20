@@ -25,6 +25,6 @@ sequelize.authenticate()
   });
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-console.log("db-->", db);
+//console.log("db-->", db);
 
 module.exports = db;
