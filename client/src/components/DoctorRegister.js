@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { insertdoctorprofile } from "./UserFunctions";
 
 class DoctorRegister extends Component {
 
@@ -26,6 +26,7 @@ class DoctorRegister extends Component {
         e.preventDefault();
     
         const docProfile = {
+          DrID:localStorage.ID,
           Degree: this.state.Degree,
           Specialization: this.state.Specialization,
           YearOfExperience: this.state.YearOfExperience,
@@ -35,10 +36,17 @@ class DoctorRegister extends Component {
           Gender: this.state.Gender
         };
         console.log("Doctor info ",docProfile);
-       /* register(newUser).then(res => {
-          alert("Please Login with this ID "+ res);
-          this.props.history.push(`/login`);
-        });*/
+        insertdoctorprofile(docProfile)
+        .then(res =>{
+          
+          if(res.status==200){
+              alert("Profile Inserted Successfully");
+              this.props.history.push(`/`);
+          }
+          else{
+            alert("Profile didnotinserted");
+          }
+        });
       }
     render() {
         return (

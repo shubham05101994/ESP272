@@ -35,6 +35,11 @@ class Landing extends Component {
             Doctor
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/doctorappointments" className="nav-link">
+            Upcoming Appointments
+          </Link>
+        </li>
       </ul>
     );
     const patient = (

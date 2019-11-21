@@ -5,21 +5,40 @@ const db = require("../database/db.js");
 doctorprofile.use(cors());
 
 
-dashboard.post("/", (req, res) => {
-    const today = new Date();
-    const ss = today.toDateString()+" "+today.getHours() +":"+today.getMinutes()+":" +today.getSeconds();
+doctorprofile.post("/", (req, res) => {
+    //const today = new Date();
+    
     const doctorData = {
-      First_Name: req.body.first_name,
-      Last_Name: req.body.last_name,
-      Email: req.body.email,
-      Password: req.body.password,
-      Role:req.body.role,
-      Created: ss
+      DrID:req.body.DrID,
+      Degree: req.body.Degree,
+      Specialization: req.body.Specialization,
+      YearOfExperience: req.body.YearOfExperience,
+      Address: req.body.Address,
+      Contact:req.body.Contact,
+      Gender: req.body.Gender,
+      Fee:req.body.Fee
     };
-    db.sequelize
-    .query("select File_description,sum(allcount) as count from user_login.user_file_details group by File_description order by sum(allcount) desc limit 5")
+
+    
+    db.sequelize.query('insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee) '+
+    ' values(:DrID,:Degree,:Specialization,:YearOfExperience,:Address,:Contact,:Gender,:Fee)', {
+      replacements: {
+        DrID:req.body.DrID,
+        Degree: req.body.Degree,
+        Specialization: req.body.Specialization,
+        YearOfExperience: req.body.YearOfExperience,
+        Address: req.body.Address,
+        Contact:req.body.Contact,
+        Gender: req.body.Gender,
+        Fee:req.body.Fee
+      }
+    })
     .then(([results]) => {
-        res.send(results);
-        //console.log(results);
-      })
+      res.json(results);
+    
+  })
+  .catch(err => {
+      res.send("error: " + err);
     });
+});
+module.exports=doctorprofile;

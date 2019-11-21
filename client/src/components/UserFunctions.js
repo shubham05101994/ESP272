@@ -32,6 +32,28 @@ export const insertappointmentinfo =  async appointmentdetails => {
  // console.log(response);
 };
 
+export const insertdoctorprofile =  async doctorprofiledetails => {
+  try {
+     const response = await axios
+       .post("doctorprofile/", {
+          DrID:doctorprofiledetails.DrID,
+          Degree: doctorprofiledetails.Degree,
+          Specialization: doctorprofiledetails.Specialization,
+          YearOfExperience: doctorprofiledetails.YearOfExperience,
+          Address: doctorprofiledetails.Address,
+          Contact: doctorprofiledetails.Contact,
+          Fee: doctorprofiledetails.Fee,
+          Gender: doctorprofiledetails.Gender
+       });
+     return response;
+   }
+   catch (err) {
+     console.log(err);
+     alert(err);
+   }
+  // console.log(response);
+ };
+
 export const login = async user => {
   try {
     const response = await axios
@@ -122,7 +144,40 @@ export const returnallspecialization = async()  => {
   }
   // console.log(response);
  };
-
+ export const doctorappointments = async(id)  => {
+  //console.log('In specific doctor for returning names');
+  try {
+    const response =  axios
+      .get("returnall/doctorappointment", {
+        params: {
+          ID: id
+        }
+      });
+    //console.log('Doctor details ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
+ export const patientchecked =  async (id) => {
+  console.log('in updatefile userfunction.js', id);
+  try {
+     const response = await axios
+       .post("returnall/updatepatientcheck", {
+         
+        BookingID: id
+         
+       });
+      return response;
+   }
+   catch (err) {
+     console.log(err);
+     alert(err);
+   }
+ };
 
 
 export const returnallfiles =  async emailid => {
@@ -205,22 +260,6 @@ export const returnallfiles =  async emailid => {
 
 
  
- export const updatedatabase =  async (idfileupdate) => {
-  console.log('in updatefile userfunction.js', idfileupdate);
-  try {
-     const response = await axios
-       .post("returnfiles/updatedatabase", {
-         
-           idUser_file_details: idfileupdate
-         
-       });
-      return response;
-   }
-   catch (err) {
-     console.log(err);
-     alert(err);
-   }
- };
-
+ 
 
  
