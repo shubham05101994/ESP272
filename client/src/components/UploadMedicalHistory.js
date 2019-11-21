@@ -1,15 +1,26 @@
 
 import React, { Component } from 'react';
+import axios from 'axios';
+import S3uplload from 'react-s3';
 
+
+const config = {
+  bucketName: config.bucketName,
+  region: config.region,
+  accessKeyId: config.accessKeyId,
+  secretAccessKey: config.secretAccessKey
+}
 
 class UploadMedicalHistory extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-          selectedFile: null
-        };
-        this.onChangeHandler = this.onChangeHandler.bind(this);
+          selectedFile: null,
+          email: "",
+          FileName: "",
+          FileDownloadLink: ""
+        }
       }
 
       onChangeHandler= async event =>{
@@ -19,6 +30,31 @@ class UploadMedicalHistory extends Component {
         console.log(event.target.files[0]);
       }
 
+      onClickHandler = async event =>  {
+        event.preventDefault();
+        try{
+          S3uplload.uploadFile(this.state.selectedFile, config)
+          .then((data)=>{
+            console.log(data);
+            this.setState({
+              email: localStorage.ID,
+              FileName: data.key,
+              FileDownloadLink: data.location
+            })
+           
+            axios.post('https://puqmcxcpb0.execute-api.us-east-2.amazonaws.com/Prod/uploadfileinfo',this.state)
+            .then(res=>{
+              if(res){
+                alert('File uploaded successfully');
+                window.location.reload();
+              }
+            });
+          })
+        }catch(error){
+          console.log(error.message);
+          alert(error);
+        }
+    }
 
     render() {
         return (
