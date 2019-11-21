@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { patientbookingdetails } from "./UserFunctions";
+import "./sh.css"
 class PatientBooking extends Component {
   constructor(props) {
     super(props);
@@ -7,28 +8,64 @@ class PatientBooking extends Component {
       bookingdetails: []
     };
   }
+  componentDidMount() {
+    let id = localStorage.ID;
+    patientbookingdetails(id)
+      .then(res => {
+        console.log("all cards ", res.data);
+        this.setState({
+          bookingdetails: res.data
+        });
+      })
+      .catch(err => {
+        alert(err);
+      });
+  }
+
   render() {
     return (
       <div>
-        <div>Here are your Booking Details</div>
-        {this.state.bookingdetails.map(response => (
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-body">
-              <h5 class="card-title">{response.Specialization}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="card-link">
-                Card link
-              </a>
-              <a href="#" class="card-link">
-                Another link
-              </a>
+        <h1>Here are your Booking Details</h1>
+        <div class="">
+        
+          {this.state.bookingdetails.map(response => (
+           
+           <div
+              class="card col-md-3"
+              style={{
+                
+                border: "1px solid brown",
+                boxShadow: "1px 1px 10px 2px",
+                marginRight:'3%',
+                marginBottom:'3%'
+              }}
+            >
+              <div class="card-body">
+                <h5 class="card-title">{response.Specialization}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  Doctor Name : {response.DoctorName}
+                </li>
+                <li class="list-group-item">Address :{response.Address}</li>
+                <li class="list-group-item">Contact :{response.Contact}</li>
+                <li class="list-group-item">
+                  Doctor Gender :{response.Gender}
+                </li>
+                <li class="list-group-item">
+                  Year of Experience :{response.YearOfExperience}
+                </li>
+                <li class="list-group-item">
+                  Appointment Date :{response.AppointmentDate}
+                </li>
+                <li class="list-group-item">Fee :{response.Fee}</li>
+                <li class="list-group-item">Concent :{response.Concent}</li>
+              </ul>
             </div>
-          </div>
-        ))}
+            
+          ))}
+          
+        </div>
       </div>
     );
   }

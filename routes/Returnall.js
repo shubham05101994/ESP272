@@ -42,13 +42,13 @@ returnall.get("/specificdoctordetails", (req, res) => {
 
 returnall.get("/patientbookings", (req, res) => {
   db.sequelize.query(
-'SELECT CONCAT(R.First_Name," ",R.Last_Name) as DoctorName, D.Specialization, D.Address, D.Contact, D.Gender, D.YearOfExperience,' + 
-'A.AppointmentDate, A.AppointmentTime, A.Fee, A.Concent' + 
-'from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R'+
-'INNER JOIN MedicoConnect.DoctorInfos D' +
-' ON A.DoctorID = R.ID AND A.DoctorID = D.DrID' +
-'WHERE A.PatientID = ID;', {
-    replacements: {ID: req.query.ID}
+'SELECT CONCAT(R.First_Name," ",R.Last_Name) as DoctorName, D.Specialization, D.Address, D.Contact, D.Gender, D.YearOfExperience, ' + 
+'A.AppointmentDate, A.AppointmentTime, A.Fee, A.Concent ' + 
+'from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R '+
+'INNER JOIN MedicoConnect.DoctorInfos D ' +
+' ON A.DoctorID = R.ID AND A.DoctorID = D.DrID ' +
+'WHERE A.PatientID = :ID;', {
+    replacements: {ID: '5'}
   })
 .then(([results]) => {
     res.send(results);
