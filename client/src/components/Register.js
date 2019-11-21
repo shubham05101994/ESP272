@@ -21,7 +21,7 @@ class Register extends Component {
     this.setState({
       role: event.target.value
     });
-    
+    console.log(this.state.role);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });

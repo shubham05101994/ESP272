@@ -10,7 +10,7 @@ import Register from "./components/Register";
 import DoctorRegister from "./components/DoctorRegister";
 import Cashier from "./components/Cashier";
 import Patient from "./components/Patient";
-//import Profile from "./components/Profile";
+import PatientBooking from "./components/PatientBookings";
 
 class App extends Component {
   render() {
@@ -25,6 +25,8 @@ class App extends Component {
             <Route exact path="/doctorregister" component={DoctorRegister} />
             <Route exact path="/cashier" component={Cashier} />
             <Route exact path="/patient" component={Patient} />
+            <Route exact path="/patientbooking" component={PatientBooking} />
+
            
           </div>
         </div>

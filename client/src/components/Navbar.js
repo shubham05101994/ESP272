@@ -44,6 +44,11 @@ class Landing extends Component {
             Patient
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/patientbooking" className="nav-link">
+            Booking Details
+          </Link>
+        </li>
       </ul>
     );
     const cashier = (
