@@ -51,10 +51,63 @@ export const login = async user => {
     return response.data;
   }
   catch (err) {
-    console.log(err);
+    //console.log(err);
     alert(err);
   }
 };
+export const returnallspecialization = async()  => {
+  console.log('In Spcialization for returning all specialization');
+  try {
+    const response = await axios
+      .get("returnall/specialization");
+    //console.log('all specialization ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
+
+ export const returnallspecificdoctor = async(specialization)  => {
+  console.log('In specific doctor for returning names');
+  try {
+    const response =  axios
+      .get("returnall/specificdoctor", {
+        params: {
+          Specialization: specialization
+        }
+      });
+   // console.log('all docotrs ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
+
+ export const returnallspecificdoctordetails = async(id)  => {
+  console.log('In specific doctor for returning names');
+  try {
+    const response =  axios
+      .get("returnall/specificdoctordetails", {
+        params: {
+          ID: id
+        }
+      });
+    console.log('Doctor details ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
+
 
 
 
