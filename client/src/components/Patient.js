@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { returnallspecialization } from "./UserFunctions";
 import { returnallspecificdoctor } from "./UserFunctions";
 import { returnallspecificdoctordetails } from "./UserFunctions";
+import { insertappointmentinfo } from "./UserFunctions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 class Patient extends Component {
@@ -15,7 +16,8 @@ class Patient extends Component {
       doctor_id_selected: "",
       startDate: new Date(),
       time:"",
-      consent:""
+      consent:"",
+      PatientID:""
     };
   }
   componentDidMount() {
@@ -79,17 +81,26 @@ class Patient extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const newUser = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      email: this.state.email,
-      password: this.state.password,
-      role: this.state.specialization_selected,
+    let appointmentdetails = {
+      PatientID:localStorage.ID,
+      DoctorID:this.state.doctor_id_selected,
       date: this.state.startDate.toDateString(),
       time:this.state.time, 
       consent:this.state.consent
     };
-    console.log("user info ", newUser);
+    insertappointmentinfo(appointmentdetails)
+    .then(res =>{
+      
+      if(res.status==200){
+          alert("Appointment Booked");
+          this.props.history.push(`/`);
+      }
+      else{
+        alert("Appointment Server Down");
+      }
+    });
+    
+    console.log("user info ", appointmentdetails);
     //register(newUser).then(res => {
     //alert("Please Login with this ID "+ res);
     //  this.props.history.push(`/login`);

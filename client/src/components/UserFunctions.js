@@ -13,21 +13,17 @@ export const register = async newUser => {
   
 };
 
-export const uploadfileuserinfo =  async fileuserinfo => {
+export const insertappointmentinfo =  async appointmentdetails => {
  try {
     const response = await axios
-      .post("FileinfoSave/", {
-        Email_id: fileuserinfo.Email_id,
-        File_description: fileuserinfo.File_description,
-        Download_link: fileuserinfo.Download_link,
-        File_upload_time: fileuserinfo.File_upload_time,
-        File_updated_time: fileuserinfo.File_updated_time,
-        File_delete_flag: fileuserinfo.File_delete_flag,
-        File_deleted_time: fileuserinfo.File_deleted_time,
-        File_Update_flag: fileuserinfo.File_Update_flag,
-        Country: fileuserinfo.Country_Name
+      .post("insertappointmentinfo/", {
+        PatientID: appointmentdetails.PatientID,
+        DoctorID: appointmentdetails.DoctorID,
+        AppointmentDate: appointmentdetails.date,
+        AppointmentTime: appointmentdetails.time,
+        Consent: appointmentdetails.consent
       });
-    return response.data;
+    return response;
   }
   catch (err) {
     console.log(err);
@@ -48,6 +44,7 @@ export const login = async user => {
     localStorage.setItem("usertoken", response.data.token1);
     localStorage.setItem("email", user.email);
     localStorage.setItem("role", response.data.user.Role);
+    localStorage.setItem("ID", response.data.user.ID);
     return response.data;
   }
   catch (err) {
