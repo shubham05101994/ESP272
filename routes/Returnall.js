@@ -48,7 +48,11 @@ returnall.get("/patientbookings", (req, res) => {
 'INNER JOIN MedicoConnect.DoctorInfos D ' +
 ' ON A.DoctorID = R.ID AND A.DoctorID = D.DrID ' +
 'WHERE A.PatientID = :ID;', {
+<<<<<<< HEAD
     replacements: {ID: req.query.ID}
+=======
+    replacements: {ID: '5'}
+>>>>>>> 6dd6fea39f0f14c75d6640ee4f703f898a876262
   })
 .then(([results]) => {
     res.send(results);

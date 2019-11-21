@@ -104,7 +104,24 @@ export const returnallspecialization = async()  => {
   }
   // console.log(response);
  };
-
+ export const patientbookingdetails = async(id)  => {
+  //console.log('In specific doctor for returning names');
+  try {
+    const response =  axios
+      .get("returnall/patientbookings", {
+        params: {
+          ID: id
+        }
+      });
+    //console.log('Doctor details ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
 
 
 
@@ -167,26 +184,7 @@ export const returnallfiles =  async emailid => {
  };
 
 
- export const sesmailfunctionality =  async email => {
-  console.log('in sesemailfunctionality', email);
-  try {
-     const response = await axios
-       .get("https://77k3rsl8sb.execute-api.us-east-1.amazonaws.com/prod/sesdeleteemail", {
-         params: {
-           email: email
-         }
-       });
-       console.log('printing response ', response);
-     if (response == null) {
-       console.log("email sent");
-     }
-   }
-   catch (err) {
-     console.log(err);
-     alert(err);
-   }
-  // console.log(response);
- };
+ 
 
 
 
@@ -225,101 +223,4 @@ export const returnallfiles =  async emailid => {
  };
 
 
- export const dashboard =  () => {
-  return axios
-     .get("dashboard/")
-     .then(response => {
-       console.log('In dashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
-
- export const CountryWisedashboard =  () => {
-  return axios
-     .get("dashboard/Country")
-     .then(response => {
-       console.log('In CountryWisedashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
-
- export const UnitedStatesdashboard =  () => {
-  return axios
-     .get("dashboard/UnitedStatesCountry")
-     .then(response => {
-       console.log('In UnitedStatesCountry Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
-
- export const Indiadashboard =  () => {
-  return axios
-     .get("dashboard/IndiaCountry")
-     .then(response => {
-       console.log('In Indiadashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
-
- export const Japandashboard =  () => {
-  return axios
-     .get("dashboard/JapanCountry")
-     .then(response => {
-       console.log('In Japandashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
- 
- export const Chinadashboard =  () => {
-  return axios
-     .get("dashboard/ChinaCountry")
-     .then(response => {
-       console.log('In Chinadashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
-
- export const Singaporedashboard =  () => {
-  return axios
-     .get("dashboard/SingaporeCountry")
-     .then(response => {
-       console.log('In Singaporedashboard Userfunctions.js', response);
-       return response;
-     })
-     .catch(err => {
-       console.log(err);
-       alert(err);
-     });
-  // console.log(response);
- };
  
