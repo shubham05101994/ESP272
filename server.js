@@ -15,9 +15,11 @@ app.use(
 var Users = require("./routes/Register");
 var Returnall = require("./routes/Returnall");
 var InsertAppointmentInfo =require("./routes/InsertAppointment");
+var DoctorProfileRegister = require("./routes/DocterProfileRegister");
 app.use("/register", Users);
 app.use("/returnall", Returnall);
 app.use("/insertappointmentinfo", InsertAppointmentInfo);
+app.use("/doctorprofile", DoctorProfileRegister);
 
 app.listen(port, function() {
   console.log("Server is running on port: " + port);

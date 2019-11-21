@@ -11,6 +11,7 @@ import DoctorRegister from "./components/DoctorRegister";
 import Cashier from "./components/Cashier";
 import Patient from "./components/Patient";
 import PatientBooking from "./components/PatientBookings";
+import DoctorAppointment from "./components/DoctorAppointments";
 import UploadPatientHistory from "./components/UploadMedicalHistory";
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/cashier" component={Cashier} />
             <Route exact path="/patient" component={Patient} />
             <Route exact path="/patientbooking" component={PatientBooking} />
+            <Route exact path="/doctorappointments" component={DoctorAppointment} />
             <Route exact path="/medicalhistory" component={UploadPatientHistory} />
 
            

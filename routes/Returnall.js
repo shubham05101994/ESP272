@@ -47,12 +47,8 @@ returnall.get("/patientbookings", (req, res) => {
 'from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R '+
 'INNER JOIN MedicoConnect.DoctorInfos D ' +
 ' ON A.DoctorID = R.ID AND A.DoctorID = D.DrID ' +
-'WHERE A.PatientID = :ID;', {
-<<<<<<< HEAD
+'WHERE A.PatientID = :ID order by A.BookingID desc ', {
     replacements: {ID: req.query.ID}
-=======
-    replacements: {ID: '5'}
->>>>>>> 6dd6fea39f0f14c75d6640ee4f703f898a876262
   })
 .then(([results]) => {
     res.send(results);
@@ -63,10 +59,10 @@ returnall.get("/patientbookings", (req, res) => {
 });
 
 returnall.get("/doctorappointment", (req, res) => {
-  db.sequelize.query('SELECT CONCAT(R.First_Name," ",R.Last_Name) as PatientName, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked' +
+  db.sequelize.query('SELECT A.BookingID,CONCAT(R.First_Name," ",R.Last_Name) as PatientName, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked ' +
   ' from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R ' +
-  ' ON A.DoctorID = R.ID ' +
-  ' WHERE A.DoctorID = :ID', {
+  ' ON A.PatientID = R.ID ' +
+  ' WHERE A.DoctorID = :ID AND PatientChecked="No" order by A.BookingID desc', {
     replacements: {ID: req.query.ID}
   })
 .then(([results]) => {
@@ -74,6 +70,23 @@ returnall.get("/doctorappointment", (req, res) => {
 })
 .catch(err => {
     res.send("error: " + err);
+  });
+});
+
+returnall.post("/updatepatientcheck", (req, res) => {
+  const today = new Date();
+  
+
+   let sk=req.body.BookingID;
+   console.log(sk);
+   db.sequelize.query('update MedicoConnect.Appointments set PatientChecked = "Yes" where BookingID = :BookingID', {
+    replacements: {BookingID: req.body.BookingID}
+  })
+  .then(response => {
+     res.send(response);
+  })
+  .catch(err => {
+    console.log("error: " + err);
   });
 });
 
