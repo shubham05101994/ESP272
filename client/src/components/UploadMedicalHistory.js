@@ -1,23 +1,13 @@
 
 import React, { Component } from 'react';
-import S3FileUpload from 'react-s3';
 
-const config = {
-  bucketName: 'cmpe272medico',
-  region: 'us-east-2',
-  accessKeyId: 'AKIAITPN5ZT4R3HY77IQ',
-  secretAccessKey: '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',
-}
 
 class UploadMedicalHistory extends Component {
 
     constructor() {
         super();
         this.state = {
-          selectedFile: null,
-          FileName: "",
-          FileDownloadLink:"",
-            response: []
+          selectedFile: null
         };
         this.onChangeHandler = this.onChangeHandler.bind(this);
       }
@@ -29,25 +19,7 @@ class UploadMedicalHistory extends Component {
         console.log(event.target.files[0]);
       }
 
-      onClickHandler = async event =>{
-        event.preventDefault();
-        try {
-          S3FileUpload.uploadFile(this.state.selectedFile, config)
-          .then((data)=>{
-            console.log('hi',data);
-            this.setState({
-              FileName: data.key
-              //FileDownloadLink: data.location
-            })
-            //console.log(this.state.email,this.state.FileName, this.state.FileDownloadLink); 
-            
-          }) 
-        }
-        catch(error){
-          console.log(error.message);
-          alert(error);
-        }
-      }
+
     render() {
         return (
         <div className="container">
