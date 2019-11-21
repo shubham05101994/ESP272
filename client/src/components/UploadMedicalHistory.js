@@ -7,50 +7,33 @@ class UploadMedicalHistory extends Component {
     constructor() {
         super();
         this.state = {
-            Degree: "",
-            Specialization: "",
-            YearOfExperience: "",
-            Address: "",
-            Contact: "",
-            Fee:"",
-            Gender:"",
-            errors: {}
+          selectedFile: null
         };
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeHandler = this.onChangeHandler.bind(this);
       }
 
-      onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+      onChangeHandler= async event =>{
+          this.setState({
+          selectedFile: event.target.files[0]
+        })
+        console.log(event.target.files[0]);
       }
-      onSubmit(e) {
-        e.preventDefault();
-    
-        const docProfile = {
-          Degree: this.state.Degree,
-          Specialization: this.state.Specialization,
-          YearOfExperience: this.state.YearOfExperience,
-          Address: this.state.Address,
-          Contact: this.state.Contact,
-          Fee: this.state.Fee,
-          Gender: this.state.Gender
-        };
-        console.log("Doctor info ",docProfile);
-       /* register(newUser).then(res => {
-          alert("Please Login with this ID "+ res);
-          this.props.history.push(`/login`);
-        });*/
-      }
+
+
     render() {
         return (
         <div className="container">
         <div className="row">
-          <div className="col-md-6 mt-5 mx-auto" style={{textAlign:'left'}}>
+          <div className="col-md-8 mt-5 mx-auto" style={{textAlign:'left'}}>
+          <h1 className="h3 mb-3 font-weight-normal">Please upload your medical history in .png/.jpg format</h1> 
+          </div>
+          <div className="col-md-4.5 mt-4 mx-auto" style={{textAlign:'left'}}>
             <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Please upload your medical history in .png/.jpg format</h1>
               <label>Upload your file</label><br />
-                <input type="file" name="file" onChange={this.onChangeHandler}/>
-                <button type="button" className="button is-primary" onClick={this.onClickHandler}>Upload File</button>
+                <input type="file" name="file"
+                className="btn btn-lg btn-primary btn-block" onChange={this.onChangeHandler}/>
+                <button type="submit"
+                className="btn btn-lg btn-primary btn-block" onClick={this.onClickHandler}>Upload File</button>
             </form>
           </div>
         </div>
