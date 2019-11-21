@@ -1,35 +1,61 @@
--- Create Table---
-CREATE TABLE RegisterInfos (
-	ID INT NOT NULL AUTO_INCREMENT,
-    First_Name VARCHAR(100) NOT NULL,
-	Last_Name VARCHAR(100) NOT NULL,
-    Email TEXT NOT NULL,
-    Password TEXT NOT NULL,
-    Role VARCHAR(50) NOT NULL,
-    Created TEXT,
-    PRIMARY KEY (ID)
-);
+SELECT * FROM MedicoConnect.RegisterInfos;
+select * from MedicoConnect.DoctorInfos;
+select * from MedicoConnect.Appointments;
 
-CREATE TABLE DoctorInfos (
-     DrID INT NOT NULL,
-     Degree VARCHAR(100) NOT NULL,
-     Specialization VARCHAR(50) NOT NULL,
-     YearOfExperience VARCHAR(20) NOT NULL,
-     Address VARCHAR(300) NOT NULL,
-     Contact VARCHAR(20) NOT NULL,
-     Gender CHAR(1),
-     FOREIGN KEY (DrID)
-      REFERENCES RegisterInfos(ID)
-);
+insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee) values('1','MBBS','General Physician','2','San Jose','123456789','M','200');
+insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee)  values('4','MD','Child Specialist','5','Santa clara','123456799','F','100');
+insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee)  values('6','Dental','Dentist','4','Santa clara','123456999','M','150');
+insert into MedicoConnect.DoctorInfos (DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee) values('7','MBBS','General Physician','3','San Jose','123459999','F','50');
+insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee)  values('8','MBBS','General Physician','8','Mountain view','123499999','M','40');
+insert into MedicoConnect.DoctorInfos(DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee)  values('9','Dental','Dentist','9','Sunny vale','123999999','M','170');
+insert into MedicoConnect.DoctorInfos (DrID,Degree,Specialization,YearOfExperience,Address,Contact,Gender,Fee) values('10','Dental','Dentist','14','Santa clara','129999999','F','200');
 
----Insert query---
-insert into MedicoConnect.DoctorInfos values('1','MBBS','General Physician','2','San Jose','123456789','M');
-insert into MedicoConnect.DoctorInfos values('4','MD','Child Specialist','5','Santa clara','123456799','F');
-
--- Query for Specialization dropdown---
 SELECT DISTINCT Specialization from MedicoConnect.DoctorInfos;
 
--- Query for Doctor Name dropdown--
-SELECT CONCAT(FIRST_NAME,' ',LAST_NAME) FROM MedicoConnect.RegisterInfos WHERE ID IN (
+SELECT CONCAT(FIRST_NAME,' ',LAST_NAME), ID FROM MedicoConnect.RegisterInfos WHERE ID IN (
 	SELECT DrID FROM MedicoConnect.DoctorInfos WHERE Specialization = 'General Physician'
 );
+
+SELECT Degree, YearOfExperience, Address, Contact, Fee from MedicoConnect.DoctorInfos where DrID = '1';
+
+-- onclick Make Appointmnet button: insert data into Appointmnet table---
+insert into MedicoConnect.Appointments(PatientID, DoctorID,AppointmentDate,AppointmentTime,Fee,Concent) values 
+(15,1,'Tue Nov 19 2019 21:38:1','10 AM',(SELECT Fee FROM MedicoConnect.DoctorInfos WHERE DrID = 1),'No');
+insert into MedicoConnect.Appointments (PatientId, DoctorId,AppointmentDate,AppointmentTime,Fee,Concent) values 
+(15,7,'Tue Nov 20 2019 21:38:1','10 AM',(SELECT Fee FROM MedicoConnect.DoctorInfos WHERE DrID = 7),'Yes');
+insert into MedicoConnect.Appointments (PatientId, DoctorId,AppointmentDate,AppointmentTime,Fee,Concent) values 
+(14,7,'Tue Nov 20 2019 21:38:1','10 AM',(SELECT Fee FROM MedicoConnect.DoctorInfos WHERE DrID = 7),'Yes');
+insert into MedicoConnect.Appointments(PatientID, DoctorID,AppointmentDate,AppointmentTime,Fee,Concent) values 
+(13,10,'Tue Nov 19 2019 21:38:1','10 AM',(SELECT Fee FROM MedicoConnect.DoctorInfos WHERE DrID = 10),'No');
+
+-- query with parameters---
+-- insert into MedicoConnect.Appointments values 
+-- (:PatientID,:DoctorID,:date,:time,(SELECT Fee FROM MedicoConnect.DoctorInfos WHERE DrID = :doctorId),:Concent);
+
+-- To display list of patients to doctors in appointmnet page --
+SELECT CONCAT(R.First_Name,' ',R.Last_Name) as PatientName, A.AppointmentDate, A.AppointmentTime, A.Fee 
+from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
+ON A.PatientID = R.ID
+WHERE R.ID = '15' and PatientChecked = 'No';
+
+-- query to get data for cashier --
+SELECT CONCAT(R.First_Name,' ',R.Last_Name) as DoctorName, A.Fee
+from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
+ON A.DoctorID = R.ID
+WHERE R.ID = '7' and PatientID = '14';
+
+
+-- query to fetch paitient's bookings --
+SELECT CONCAT(R.First_Name,' ',R.Last_Name) as DoctorName, D.Specialization, D.Address, D.Contact, D.Gender, D.YearOfExperience, 
+ A.AppointmentDate, A.AppointmentTime, A.Fee, A.Concent
+from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
+INNER JOIN MedicoConnect.DoctorInfos D
+ON A.DoctorID = R.ID AND A.DoctorID = D.DrID
+WHERE A.PatientID = 5;
+-- Pass Patient ID as parameter --
+
+-- query to show appintmnets to doctors --
+SELECT CONCAT(R.First_Name,' ',R.Last_Name) as PatientName, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked
+from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
+ON A.DoctorID = R.ID
+WHERE A.DoctorID = 1

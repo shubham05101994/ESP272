@@ -9,7 +9,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import DoctorRegister from "./components/DoctorRegister";
 import Cashier from "./components/Cashier";
-import PaymentInfo from "./components/PaymentInfo";
 import Patient from "./components/Patient";
 //import Profile from "./components/Profile";
 
@@ -24,7 +23,6 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/doctorregister" component={DoctorRegister} />
-            <Route exact path="/payment" component={PaymentInfo} />
             <Route exact path="/cashier" component={Cashier} />
             <Route exact path="/patient" component={Patient} />
            
