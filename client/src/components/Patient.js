@@ -93,7 +93,7 @@ class Patient extends Component {
       
       if(res.status==200){
           alert("Appointment Booked");
-          this.props.history.push(`/`);
+          this.props.history.push(`/patientbooking`);
       }
       else{
         alert("Appointment Server Down");
