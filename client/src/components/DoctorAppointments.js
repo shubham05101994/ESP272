@@ -36,9 +36,17 @@ class DoctorAppointment extends Component {
 
 
     render() { 
+      let reportsenabled=(
+      
+          
+              <button class="btn btn-primary" onClick={this.onclick}>Reports</button>        
+        
+      )
         return ( 
             <div>
-            <h1>Here are your Upcoming Apointents</h1>
+              <div style={{marginTop:'2%',marginBottom:'2%'}}>
+            <h1>Here are your Upcoming Apointments</h1>
+            </div>
             <div class="">
             
               {this.state.doctorappointment.map(response => (
@@ -66,12 +74,15 @@ class DoctorAppointment extends Component {
                     <li class="list-group-item">
                     Patient Checked :{response.PatientChecked}
                     </li>
-                    
+                    <li class="list-group-item">
+                    <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Patient Checked!!</button>        
+                    </li>
+                    <li class="list-group-item">
+                    {response.Concent=="Yes"?reportsenabled:""}
+                    </li>
                   </ul>
-                  <div class="card-body">
-                    <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Patient Checked!!</button>
-                    
-  </div>
+                  
+                 
                 </div>
                 
               ))}

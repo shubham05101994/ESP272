@@ -59,7 +59,7 @@ returnall.get("/patientbookings", (req, res) => {
 });
 
 returnall.get("/doctorappointment", (req, res) => {
-  db.sequelize.query('SELECT A.BookingID,CONCAT(R.First_Name," ",R.Last_Name) as PatientName, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked ' +
+  db.sequelize.query('SELECT A.BookingID,CONCAT(R.First_Name," ",R.Last_Name) as PatientName,A.Concent, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked ' +
   ' from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R ' +
   ' ON A.PatientID = R.ID ' +
   ' WHERE A.DoctorID = :ID AND PatientChecked="No" order by A.BookingID desc', {

@@ -31,7 +31,7 @@ class PatientBooking extends Component {
           {this.state.bookingdetails.map(response => (
            
            <div
-              class="card col-md-3"
+              class="card1 col-md-3"
               style={{
                 
                 border: "1px solid brown",
