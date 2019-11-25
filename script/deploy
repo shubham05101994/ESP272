@@ -1,8 +1,8 @@
 #!/bin/sh 
-echo "after git pull code 1"
-sudo su - jenkins <<EOF
-ssh ubuntu@172.31.1.65 
-echo "after git pull code 2"
+    echo "after git pull code 1"
+    sudo su - jenkins
+    ssh ubuntu@172.31.1.65 
+    echo "after git pull code 2"
     cd ~/ESP272
     echo "after git pull code 3"
     sudo git pull origin master
@@ -14,4 +14,3 @@ echo "after git pull code 2"
     npm install -g nodemon pm2
     pm2 restart ecosystem.config.js
     exit
-EOF
