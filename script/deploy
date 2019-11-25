@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh 
 sudo su - jenkins <<EOF
 ssh ubuntu@172.31.1.65 
     cd ~/node-app
