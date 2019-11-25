@@ -1,26 +1,46 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import S3uplload from 'react-s3';
+import S3 from 'react-s3';
+//import config from './config.json';
 
 
-const config = {
+const configuration = {
   bucketName:  "cmpe272medico",
   region: "us-east-2",
   accessKeyId: "AKIAJ7XLPRT2WRZBKHDQ",
   secretAccessKey: "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"
 }
-
 class UploadMedicalHistory extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
           selectedFile: null,
-          email: "",
-          FileName: "",
-          FileDownloadLink: ""
+          PatientID: "",
+          Filename: "",
+          Filedownloadlink: "",
+          response:[]
         }
+      }
+
+      async componentDidMount() { 
+        axios.get('medicalhistory/',
+        {
+          params:{
+           PatientID: localStorage.ID
+          }
+        }).then(response => {
+          console.log(response);
+        
+          if (response) {
+            
+            this.setState({
+                response: response.data
+              
+            });
+          }
+        });
       }
 
       onChangeHandler= async event =>{
@@ -33,16 +53,16 @@ class UploadMedicalHistory extends Component {
       onClickHandler = async event =>  {
         event.preventDefault();
         try{
-          S3uplload.uploadFile(this.state.selectedFile, config)
+          S3.uploadFile(this.state.selectedFile, configuration)
           .then((data)=>{
             console.log(data);
             this.setState({
-              email: localStorage.ID,
-              FileName: data.key,
-              FileDownloadLink: data.location
+              PatientID: localStorage.ID,
+              Filename: data.key,
+              Filedownloadlink: data.location
             })
            
-            axios.post('https://puqmcxcpb0.execute-api.us-east-2.amazonaws.com/Prod/uploadfileinfo',this.state)
+            axios.post('https://8biu0dszh6.execute-api.us-east-2.amazonaws.com/prod/uploadfileinfo',this.state)
             .then(res=>{
               if(res){
                 alert('File uploaded successfully');
@@ -56,6 +76,29 @@ class UploadMedicalHistory extends Component {
         }
     }
 
+    onClickHandlerDelete = async event =>  {
+      event.preventDefault();
+      try{
+        console.log(event.target.id);
+        let filename = event.target.id;
+        axios.get('/medicalhistory/deletefilemedico',
+        {
+          params:{
+           PatientID: localStorage.ID,
+           Filename:filename
+          }
+        }).then(response => {
+          alert('File deleted successfully');
+          window.location.reload();
+        });
+      }catch(error){
+        console.log(error.message);
+        alert(error);
+      }
+  }
+
+
+    
     render() {
         return (
         <div className="container">
@@ -73,6 +116,28 @@ class UploadMedicalHistory extends Component {
             </form>
           </div>
         </div>
+        
+        <div className="col-md-12">
+          {this.state.response.map(response => (
+            <div  className="display_p" key={response.PatientID}>
+              <div className="col-md-2">
+                <b>{response.Filename}</b>
+              </div>
+             
+              <div className="col-md-2">
+                <a id={response.Filename}
+                  className="btn btn-danger color_text"
+                  onClick={this.onClickHandlerDelete}>
+                  Delete
+                </a>
+              </div>
+              <div>
+                  <img src={response.Filedownloadlink} alt="Uploaded images" height="800" width="800"/>
+                </div>
+            </div>
+          ))}
+        </div>
+        
       </div>
         
         )

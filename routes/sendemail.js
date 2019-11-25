@@ -40,7 +40,7 @@ sendemailapp.post("/", (req, res) => {
         var mailOptions = {
             from: 'medicoconnect272esp@gmail.com',
             to: req.body.DoctorEmail,
-            subject: 'Sending Email using Node.js',
+            subject: 'MedicoConnect: Appointment Details',
             html: output1       
         };
 
@@ -55,7 +55,7 @@ sendemailapp.post("/", (req, res) => {
         var mailOptions = {
             from: 'medicoconnect272esp@gmail.com',
             to: req.body.PatientEmail,
-            subject: 'Sending Email using Node.js',
+            subject: 'MedicoConnect: Appointment Details',
             html: output2
         };
 
