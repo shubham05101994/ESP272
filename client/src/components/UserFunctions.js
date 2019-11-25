@@ -32,6 +32,26 @@ export const insertappointmentinfo =  async appointmentdetails => {
  // console.log(response);
 };
 
+export const sendmail =  async appointmentdetails => {
+  try {
+     const response = await axios
+       .post("sendmail/", {
+        DoctorEmail: appointmentdetails.DoctorEmail,
+        PatientEmail: appointmentdetails.PatientEmail,
+        DoctorName:appointmentdetails.DoctorName,
+        AppointmentDate: appointmentdetails.date,
+        AppointmentTime: appointmentdetails.time
+       });
+     return response;
+   }
+   catch (err) {
+     console.log(err);
+     alert(err);
+   }
+  // console.log(response);
+ };
+
+
 export const insertdoctorprofile =  async doctorprofiledetails => {
   try {
      const response = await axios

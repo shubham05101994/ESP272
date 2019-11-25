@@ -13,6 +13,7 @@ import Patient from "./components/Patient";
 import PatientBooking from "./components/PatientBookings";
 import DoctorAppointment from "./components/DoctorAppointments";
 import UploadPatientHistory from "./components/UploadMedicalHistory";
+import Doctorviewreports from "./components/doctorviewreports";
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/patientbooking" component={PatientBooking} />
             <Route exact path="/doctorappointments" component={DoctorAppointment} />
             <Route exact path="/medicalhistory" component={UploadPatientHistory} />
+            <Route exact path="/doctorreportview" component={Doctorviewreports} />
 
            
           </div>

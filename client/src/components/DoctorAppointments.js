@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { doctorappointments } from "./UserFunctions";
 import { patientchecked } from "./UserFunctions";
+import Doctorviewreports from "./doctorviewreports";
+import { Link, withRouter } from "react-router-dom";
 class DoctorAppointment extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            doctorappointment:[]
+            doctorappointment:[],
+            data:'bro'
          };
     }
 
@@ -33,15 +36,9 @@ class DoctorAppointment extends Component {
             alert(err);
           });
     }
-
-
+  
     render() { 
-      let reportsenabled=(
       
-          
-              <button class="btn btn-primary" onClick={this.onclick}>Reports</button>        
-        
-      )
         return ( 
             <div>
               <div style={{marginTop:'2%',marginBottom:'2%'}}>
@@ -77,8 +74,23 @@ class DoctorAppointment extends Component {
                     <li class="list-group-item">
                     <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Patient Checked!!</button>        
                     </li>
-                    <li class="list-group-item">
-                    {response.Concent=="Yes"?reportsenabled:""}
+                    <li id={response.PatientID} class="list-group-item">
+                    
+                    {
+                      (response.Concent=="Yes")?
+                      <Link to={{pathname:"/doctorreportview",data:response.PatientID}} class="btn btn-primary">
+                       Reports
+                    </Link>
+                    :""
+                    }
+
+
+                    
+                    
+                    
+                    
+                    
+                    
                     </li>
                   </ul>
                   
@@ -86,7 +98,7 @@ class DoctorAppointment extends Component {
                 </div>
                 
               ))}
-              
+             
             </div>
           </div>
          );

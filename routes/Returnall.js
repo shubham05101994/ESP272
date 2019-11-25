@@ -29,7 +29,7 @@ returnall.get("/specificdoctor", (req, res) => {
 });
 
 returnall.get("/specificdoctordetails", (req, res) => {
-    db.sequelize.query('SELECT Degree, YearOfExperience, Address, Contact, Fee,VisitingHours from MedicoConnect.DoctorInfos where DrID = (:ID)', {
+    db.sequelize.query('SELECT r.Email,d.Degree, d.YearOfExperience, d.Address, d.Contact, d.Fee,d.VisitingHours from MedicoConnect.DoctorInfos d inner join MedicoConnect.RegisterInfos r on d.DrID=r.ID where DrID = (:ID)', {
       replacements: {ID: req.query.ID}
     })
   .then(([results]) => {
@@ -59,7 +59,7 @@ returnall.get("/patientbookings", (req, res) => {
 });
 
 returnall.get("/doctorappointment", (req, res) => {
-  db.sequelize.query('SELECT A.BookingID,CONCAT(R.First_Name," ",R.Last_Name) as PatientName,A.Concent, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked ' +
+  db.sequelize.query('SELECT A.BookingID,CONCAT(R.First_Name," ",R.Last_Name) as PatientName,A.PatientID,A.Concent, A.AppointmentDate, A.AppointmentTime, A.Fee, A.PatientChecked ' +
   ' from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R ' +
   ' ON A.PatientID = R.ID ' +
   ' WHERE A.DoctorID = :ID AND PatientChecked="No" order by A.BookingID desc', {

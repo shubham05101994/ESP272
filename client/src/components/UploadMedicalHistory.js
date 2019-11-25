@@ -5,10 +5,10 @@ import S3uplload from 'react-s3';
 
 
 const config = {
-  bucketName: config.bucketName,
-  region: config.region,
-  accessKeyId: config.accessKeyId,
-  secretAccessKey: config.secretAccessKey
+  bucketName:  "cmpe272medico",
+  region: "us-east-2",
+  accessKeyId: "AKIAJ7XLPRT2WRZBKHDQ",
+  secretAccessKey: "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"
 }
 
 class UploadMedicalHistory extends Component {

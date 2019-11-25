@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { returnallspecialization } from "./UserFunctions";
+import { returnallspecialization, sendmail } from "./UserFunctions";
 import { returnallspecificdoctor } from "./UserFunctions";
 import { returnallspecificdoctordetails } from "./UserFunctions";
 import { insertappointmentinfo } from "./UserFunctions";
+//import { sendmail } from "./UserFunctions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 class Patient extends Component {
@@ -17,7 +18,8 @@ class Patient extends Component {
       startDate: new Date(),
       time:"",
       consent:"",
-      PatientID:""
+      PatientID:"",
+      doctor_name_selected:""
     };
   }
   componentDidMount() {
@@ -59,8 +61,10 @@ class Patient extends Component {
       });
     };
     onInputChangeDoctorName = event => {
+     
       this.setState({
-        doctor_id_selected: event.target.value
+        doctor_id_selected: event.target.value,
+        doctor_name_selected:event.target.options[event.target.selectedIndex].text
       });
       
         returnallspecificdoctordetails(event.target.value)
@@ -88,12 +92,28 @@ class Patient extends Component {
       time:this.state.time, 
       consent:this.state.consent
     };
+    let emaildetails = {
+      DoctorEmail:this.state.doctor_details.Email,
+      PatientEmail:localStorage.email,
+      DoctorName:this.state.doctor_name_selected,
+      date: this.state.startDate.toDateString(),
+      time:this.state.time
+    };
+    
     insertappointmentinfo(appointmentdetails)
     .then(res =>{
       
       if(res.status==200){
           alert("Appointment Booked");
-          this.props.history.push(`/patientbooking`);
+          console.log("Apoointment mail details",emaildetails);
+          sendmail(emaildetails)
+          .then(res =>{
+            this.props.history.push(`/patientbooking`);
+          })
+          .catch(err =>{
+            alert(err);
+          });
+         
       }
       else{
         alert("Appointment Server Down");
@@ -146,20 +166,16 @@ class Patient extends Component {
                 <label htmlFor="doctorname">Doctor Name</label>
                 <select
                   className="form-control"
-                  id="Specialization1"
-                  value={this.state.id}
-                  onChange={this.onInputChangeDoctorName}
-                  
-                  
+                  onChange={this.onInputChangeDoctorName}  
                 >
                   <option value="default" defaultValue>
                     Select an Option
                   </option>
                   {this.state.doctor_name.map(response => (
-                    <option id={response.ID}
+                    <option id={response.Name}
+                      name={response.Name}
                       key={response.ID}
                       value={response.ID}
-                      
                     >
                       {response.Name}
                     </option>
@@ -168,6 +184,7 @@ class Patient extends Component {
               </div>
               <h3>Complete Doctor Profile</h3>
               <div className="form-group" style={{ border: "1px solid brown",padding:"2%" }}>
+                <div><h6 htmlFor="">Doctor Email :{this.state.doctor_details.Email}</h6></div>
                 <div><h6 htmlFor="">Degree :{this.state.doctor_details.Degree}</h6></div>
                 <div><h6 htmlFor="">Year of Experience :{this.state.doctor_details.YearOfExperience}</h6></div>
                 <div><h6 htmlFor="">Address :{this.state.doctor_details.Address}</h6></div>
