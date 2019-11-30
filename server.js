@@ -27,7 +27,7 @@ app.use("/doctorprofile", DoctorProfileRegister);
 app.use("/medicalhistory", MedicalHistory);
 app.use("/sendmail", sendemailapp);
 app.get('/ss', function (req, res) {
-  res.send('hello world');
+  res.send('hello world'); 
  });
 app.listen(port, function() {
   console.log("Server is running on port: " + port);
