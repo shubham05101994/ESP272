@@ -1,7 +1,2 @@
 #!/bin/sh 
 ./node_modules/.bin/mocha ./test/test.js
-PID=$!
-# Wait for 2 seconds
-sleep 100
-# Kill it
-kill $PID
