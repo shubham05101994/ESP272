@@ -59,3 +59,35 @@ SELECT CONCAT(R.First_Name,' ',R.Last_Name) as PatientName, A.AppointmentDate, A
 from MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
 ON A.DoctorID = R.ID
 WHERE A.DoctorID = 1
+
+--stored procedure to get details for cashier
+DELIMITER $$
+CREATE PROCEDURE get_cashier_detail ()
+BEGIN
+	INSERT INTO TempAppointment (BookingID,PatientName)
+    SELECT A.BookingID,CONCAT(R.FIRST_NAME,' ',R.LAST_NAME) as PatientName
+    FROM MedicoConnect.Appointments A INNER JOIN MedicoConnect.RegisterInfos R
+	on R.ID = A.PatientID WHERE PatientChecked = 'Yes';
+    
+SELECT DISTINCT
+    A.BookingID,
+    CONCAT(R.FIRST_NAME, ' ', R.LAST_NAME) AS DoctorName,
+    T.PatientName AS PatientName,
+    A.AppointmentDate,
+    A.AppointmentTime,
+    A.Fee
+FROM
+    MedicoConnect.Appointments A
+        INNER JOIN
+    MedicoConnect.RegisterInfos R ON R.ID = A.DoctorID
+        INNER JOIN
+    MedicoConnect.TempAppointment T ON T.BookingID = A.BookingId
+WHERE
+    A.PatientChecked = 'Yes'
+ORDER BY A.BookingID;
+END$$
+
+DELIMITER ;
+
+-- call stored procedure
+CALL get_cashier_detail();
