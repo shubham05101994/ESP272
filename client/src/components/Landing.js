@@ -22,14 +22,15 @@ class Landing extends Component {
             
             <p>**NOTE: Short Feature List for MedicoConnect Application:</p>
             
-            <p className="">1. User Login</p>
-            <p className="">2. Admin Login</p>
-            <p className="">3. Social login (Facebook)</p>
-            <p className="">4. Application performs file Uploading.</p>
-            <p className="">5. Application performs file Downloading.</p>
-            <p className="">6. Application performs file Deleting.</p>
-            <p className="">7. Application performs file Updating.</p>
-            <p className="">8. Application allows to upload file only Less than 10MB</p>
+            <p className="">1. Patient Login</p>
+            <p className="">2. Doctor Login</p>
+            <p className="">3. Cashier Login</p>
+            <p className="">4. Social login (Facebook)</p>
+            <p className="">5. Application performs Booking Appointment.</p>
+            <p className="">6. Application performs Accepting Payments.</p>
+            <p className="">7. Application performs Uploading/Deleting patient reports.</p>
+            <p className="">8. Application performs Patient checked and Viewing report.</p>
+            <p className="">9. Sending Appointment booked mails</p>
            
 
 
