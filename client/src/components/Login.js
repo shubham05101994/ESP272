@@ -31,7 +31,7 @@ class Login extends Component {
     login(user).then(res => {
       if (res) {
         if (res.user.Role=="Doctor") {
-          this.props.history.push(`/doctorregister`);
+          this.props.history.push(`/doctorappointments`);
         } else if(res.user.Role=="Patient"){
           this.props.history.push(`/patient`);
         }

@@ -104,4 +104,18 @@ returnall.get("/cashierdata", (req, res) => {
     });
 });
 
+returnall.post("/updatefeecollected", (req, res) => {
+  
+   
+   db.sequelize.query('update MedicoConnect.Appointments set IsFeeCollected = "1" where BookingID = :BookingID', {
+    replacements: {BookingID: req.body.BookingID}
+  })
+  .then(response => {
+     res.send(response);
+  })
+  .catch(err => {
+    console.log("error: " + err);
+  });
+});
+
 module.exports = returnall;

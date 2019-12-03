@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Cashierreturn } from "./UserFunctions";
+import { feecollected } from "./UserFunctions";
 import "./sh.css"
 export default class Cashier extends Component {
     constructor(props) {
@@ -25,16 +26,24 @@ export default class Cashier extends Component {
       }
 
 
-      onclick=()=>{
-        //console.log(event.target.id);
-        alert("Fees Paid");
+      onclick=(event)=>{
+        feecollected(event.target.id)
+        .then(res => {
+            console.log("Pateint checked ", res);
+            alert("Fees collected");
+           window.location.reload();
+          })
+          .catch(err => {
+            alert(err);
+          });
     }
     render() {
         return (
-        <div className="container" style={{display:'flex'}}>
+        <div className="container" >
+        <div>
         {this.state.cashierdata.map(response => (
         <div
-                  class="card2 col-md-3"
+                  class="card5 col-md-3"
                   style={{
                     marginTop:'2%',marginBottom:'2%',
                     border: "1px solid brown",
@@ -59,11 +68,12 @@ export default class Cashier extends Component {
                     Fee : {response.Fee}
                     </li>
                     <li class="list-group-item">
-                    <button class="btn btn-primary" onClick={this.onclick}>Fees Collected!!</button>        
+                    <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Fees Collected!!</button>        
                     </li>
                   </ul>
                 </div>
         ))}
+        </div>
       </div>
             
         )

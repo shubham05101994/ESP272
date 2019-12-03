@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
 sendemailapp.post("/", (req, res) => {
     const output1 = `
     <p>You have new Appointment</p>
-    <h3>Appintment details Details</h3>
+    <h3>Appintment Details</h3>
     <ul>  
       <li>Patient Name: ${req.body.PatientEmail}</li>
       <li>Appointment Date: ${req.body.AppointmentDate}</li>

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Footer from "./Footer";
+import logo from "../Medico.jpg"
 
 class Landing extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="jumbotron color_back mt-4">
+      <div className="">
+        <div className="jumbotron color_back mt-4" style={{marginBottom:'0px !important'}}>
           <div className="col-sm-8 mx-auto">
           
             <h4 className="text-center">WELCOME TO</h4>
@@ -14,8 +16,10 @@ class Landing extends Component {
             </div>
           </div>
         </div>
-        <div className="jumbotron mt-4">
-          <div className="col-sm-8 mx-auto">
+        <div className="jumbotron mt-4" style={{display:'flex'}}>
+        <img src={logo} style={{width:'50%',height:'450px',borderRadius:'12%'}}></img>
+          <div className="col-sm-5 mx-auto" style={{paddingTop:'4%'}}>
+            
             <p>**NOTE: Short Feature List for MedicoConnect Application:</p>
             
             <p className="">1. User Login</p>
@@ -32,6 +36,7 @@ class Landing extends Component {
 
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

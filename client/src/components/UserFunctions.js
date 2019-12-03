@@ -294,6 +294,24 @@ export const Cashierreturn = async()  => {
   }
   // console.log(response);
  };
+
+ export const feecollected =  async (id) => {
+  //console.log('in updatefile userfunction.js', id);
+  try {
+     const response = await axios
+       .post("returnall/updatefeecollected", {
+         
+        BookingID: id
+         
+       });
+      return response;
+   }
+   catch (err) {
+     console.log(err);
+     alert(err);
+   }
+ };
+
  
  
 
