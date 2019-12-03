@@ -278,7 +278,22 @@ export const returnallfiles =  async emailid => {
   // console.log(response);
  };
 
+//Casheir
 
+export const Cashierreturn = async()  => {
+  //console.log('In Spcialization for returning all specialization');
+  try {
+    const response = await axios
+      .get("returnall/cashierdata");
+    //console.log('all specialization ', response);
+    return response;
+  }
+  catch (err) {
+    console.log(err);
+    alert(err);
+  }
+  // console.log(response);
+ };
  
  
 

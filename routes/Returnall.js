@@ -90,4 +90,18 @@ returnall.post("/updatepatientcheck", (req, res) => {
   });
 });
 
+//Casheir
+returnall.get("/cashierdata", (req, res) => {
+  db.sequelize
+  //.query("SELECT PatientID,DoctorID,AppointmentDate,AppointmentTime,Fee FROM MedicoConnect.Appointments where PatientChecked='Yes'")
+  .query("CALL get_cashier_detail();")
+  .then((results) => {
+      res.send(results);
+      console.log(results);
+  })
+  .catch(err => {
+      res.send("error: " + err);
+    });
+});
+
 module.exports = returnall;

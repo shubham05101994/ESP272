@@ -83,14 +83,6 @@ class DoctorAppointment extends Component {
                     </Link>
                     :""
                     }
-
-
-                    
-                    
-                    
-                    
-                    
-                    
                     </li>
                   </ul>
                   
