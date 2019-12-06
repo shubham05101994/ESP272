@@ -94,6 +94,12 @@ class Login extends Component {
               >
                 Sign in
               </button>
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary btn-block"
+              >
+                Facebook
+              </button>
             </form>
           </div>
         </div>

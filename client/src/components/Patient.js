@@ -131,7 +131,7 @@ class Patient extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-6 mt-5 mx-auto" style={{ textAlign: "left" }}>
+          <div className="col-md-7 mt-5 mb-5 mx-auto" style={{ textAlign: "left" }}>
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">
                 Make an appointment of Doctor
