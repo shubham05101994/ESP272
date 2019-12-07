@@ -9,7 +9,7 @@ class Landing extends Component {
         <div className="jumbotron color_back mt-4" style={{marginBottom:'0px !important'}}>
           <div className="col-sm-8 mx-auto">
           
-            <h4 className="text-center">WELCOME TO</h4>
+            <h4 className="text-center">Greetings from </h4>
             <div>
             
             <h1 className="text-center name_app">MedicoConnect</h1>
