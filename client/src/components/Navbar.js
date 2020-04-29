@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./sh.css"
 class Landing extends Component {
+
+  constructor(props) {
+    super(props);
+    
+  }
+  
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem("usertoken");
@@ -14,18 +20,22 @@ class Landing extends Component {
   }
 
   render() {
+
+    const loginLink = (<Link to="/login" className="nav-link">
+      Login
+  </Link>);
+
+
     const loginRegLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
+          {}
         </li>
-        <li className="nav-item">
+       {/*  <li className="nav-item">
           <Link to="/register" className="nav-link">
             Register
           </Link>
-        </li>
+        </li> */}
       </ul>
     );
     const doctor = (
@@ -65,34 +75,34 @@ class Landing extends Component {
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/cashier" className="nav-link">
-          Cashier
+            Cashier
           </Link>
         </li>
       </ul>
     );
-  /*  const adminLink = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/admin" className="nav-link">
-            Admin
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/dashboard" className="nav-link">
-            Dashboard
-          </Link>
-        </li>
-      </ul>
-    );
-    const userdashboard =(
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/userdashboard" className="nav-link">
-            UserDashboard
-          </Link>
-        </li>               
-      </ul>
-    );*/
+    /*  const adminLink = (
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link to="/admin" className="nav-link">
+              Admin
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+          </li>
+        </ul>
+      );
+      const userdashboard =(
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link to="/userdashboard" className="nav-link">
+              UserDashboard
+            </Link>
+          </li>               
+        </ul>
+      );*/
     const userLink = (
       <ul className="navbar-nav">
         <li className="nav-item">
@@ -100,24 +110,27 @@ class Landing extends Component {
             Logout
           </a>
         </li>
-               
+
       </ul>
+    );
+
+    const navButton = (
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExample10"
+        aria-controls="navbarsExample10"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon" />
+      </button>
     );
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark nav_color navcolo rounded">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExample10"
-          aria-controls="navbarsExample10"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-
+        {navButton}
         <div
           className="collapse navbar-collapse justify-content-md-center"
           id="navbarsExample10"
@@ -130,11 +143,11 @@ class Landing extends Component {
             </li>
           </ul>
           {localStorage.usertoken || localStorage.facebookresponeemail ? userLink : loginRegLink}
-          
-          {localStorage.role=="Doctor" ? doctor : ""}
-          {localStorage.role=="Patient" ? patient : ""}
-          {localStorage.role=="Cashier" ? cashier : ""}
-          
+
+          {localStorage.role == "Doctor" ? doctor : ""}
+          {localStorage.role == "Patient" ? patient : ""}
+          {localStorage.role == "Cashier" ? cashier : ""}
+
         </div>
       </nav>
     );

@@ -1,17 +1,69 @@
 import React, { Component } from "react";
 import Footer from "./Footer";
 import logo from "../Medico.jpg"
+import { withOktaAuth } from '@okta/okta-react';
+import { jwt_decode } from 'jwt-decode';
+var jwtDecode = require('jwt-decode');
 
-class Landing extends Component {
+const landingPage = class Landing extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user : {}
+    }
+    
+  }
+
+  componentDidMount() {
+    if (this.props.authService){
+      this.props.authService.getUser().then(res => {
+        console.log(res);
+        this.setState({
+          user: res
+        })
+      });
+    }
+    if (this.props.authService){
+       this.props.authService.getIdToken().then(res => {
+        if (res !== undefined){
+          console.log(res);
+          let idToken = res
+          let decoded = jwtDecode(idToken);
+          console.log(decoded);
+          if (decoded["isPatient"] == true){
+            console.log(decoded["isPatient"]);
+            localStorage.setItem("role", "patient");
+          } else if (decoded["isDoctor"] == true){
+            console.log(decoded["isDoctor"]);
+            localStorage.setItem("role", "doctor");
+          }
+        }
+       
+      }) 
+      //console.log(this.props.authService._authState)
+      /* let accessToken = this.props.authState["accessToken"]
+      let decoded = jwt_decode(accessToken);
+      console.log(decoded); */
+    }
+   
+  }  
   render() {
+    const { user } = this.state;
     return (
       <div className="">
         <div className="jumbotron color_back mt-4" style={{marginBottom:'0px !important'}}>
           <div className="col-sm-8 mx-auto">
-          
-            <h4 className="text-center">Greetings from </h4>
+
+      {
+        user && <h4 className="text-center">Hello {user.name} , Greetings from </h4>
+      }
+      
+      {
+        !user && <h4 className="text-center"> Greetings from </h4>
+      }
+
             <div>
-            
             <h1 className="text-center name_app">MedicoConnect</h1>
             </div>
           </div>
@@ -43,4 +95,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing;
+export default withOktaAuth(landingPage);
