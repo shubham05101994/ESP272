@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router, Route } from "react-router-dom";
 import './App.css';
-import { Security, SecureRoute, ImplicitCallback, LoginCallback, LogoutCallback} from '@okta/okta-react';
+import { Security, SecureRoute, ImplicitCallback, LoginCallback} from '@okta/okta-react';
 
 import Navbar from "./components/Navbar";
 import Landing from "./components/Landing";
@@ -54,7 +54,6 @@ class App extends Component {
             
                 <Route path='/login' render={() => <Login baseUrl='https://dev-797267.okta.com' />} />
                 <Route path='/implicit/callback' component={LoginCallback} />
-                <Route path='/implicit/logout' component={LogoutCallback} />
                 <Route exact path="/doctorregister" component={DoctorRegister} />
                 {/*  <Route exact path="/register" component={Register} /> */}
                 <Route exact path="/cashier" component={Cashier} />

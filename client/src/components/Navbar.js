@@ -1,43 +1,50 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./sh.css"
+import { withOktaAuth } from '@okta/okta-react';
+
 class Landing extends Component {
 
   constructor(props) {
     super(props);
-    
+
+    this.state = {
+      isAuthenticated: this.props.authState.isAuthenticated,
+      isLogIn: localStorage.getItem("isLogIn")
+    }
+
   }
-  
+
   logOut(e) {
     e.preventDefault();
-    localStorage.removeItem("usertoken");
-    localStorage.removeItem("logintype");
-    localStorage.removeItem("facebookresponeemail");
-    localStorage.removeItem("facebookresponename");
-    localStorage.removeItem("email");
+    /*  localStorage.removeItem("usertoken");
+     localStorage.removeItem("logintype");
+     localStorage.removeItem("facebookresponeemail");
+     localStorage.removeItem("facebookresponename");
+     localStorage.removeItem("email"); */
     localStorage.removeItem("role");
-    this.props.history.push(`/`);
+    localStorage.setItem("isLogIn", 'false');
+    this.props.authService.logout();
+    this.setState({
+      isAuthenticated: false,
+      isLogIn : 'false'
+    })
+    console.log("loging out" + this.props.authState.isAuthenticated);
+    //this.props.history.push(`/`);
   }
 
   render() {
 
+    /*  const button = this.state.isLogIn ? <Link className="nav-link" onClick={() => {this.logOut.bind(this)}}>Logout</Link> : <Link className="nav-link" to="/login">Login</Link>; */
+
     const loginLink = (<Link to="/login" className="nav-link">
       Login
-  </Link>);
+        </Link>);
 
 
-    const loginRegLink = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          {}
-        </li>
-       {/*  <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Register
-          </Link>
-        </li> */}
-      </ul>
-    );
+   /*  const loginRegLink = ( 
+     ); */
+
     const doctor = (
       <ul className="navbar-nav">
         <li className="nav-item">
@@ -127,6 +134,21 @@ class Landing extends Component {
         <span className="navbar-toggler-icon" />
       </button>
     );
+    /* if(this.state.isLogIn){
+      <ul className="navbar-nav">
+      <li className="nav-item">
+        {loginLink}
+      </li>
+    </ul>
+    } else {
+      <ul>
+        <li className="nav-item">
+          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+            Logout
+        </a>
+        </li>
+      </ul>
+    } */
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark nav_color navcolo rounded">
@@ -142,8 +164,27 @@ class Landing extends Component {
               </Link>
             </li>
           </ul>
-          {localStorage.usertoken || localStorage.facebookresponeemail ? userLink : loginRegLink}
+          {/* {localStorage.usertoken || localStorage.facebookresponeemail ? userLink : loginRegLink} */}
+          {/* {localStorage.isLogIn ? userLink : loginRegLink} */}
 
+
+          { this.state.isLogIn == 'false'  &&
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                {loginLink}
+              </li>
+            </ul>
+          }
+          {
+            this.state.isLogIn == 'true' &&
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+                  Logout
+            </a>
+              </li>
+            </ul>
+          }
           {localStorage.role == "Doctor" ? doctor : ""}
           {localStorage.role == "Patient" ? patient : ""}
           {localStorage.role == "Cashier" ? cashier : ""}
@@ -154,4 +195,4 @@ class Landing extends Component {
   }
 }
 
-export default withRouter(Landing);
+export default withOktaAuth(withRouter(Landing));

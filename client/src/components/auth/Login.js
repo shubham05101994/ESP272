@@ -31,7 +31,7 @@ export default withOktaAuth(class Login extends Component {
       console.log(res);
     if (res.status === 'SUCCESS') {
         this.checkAuthentication();
-        localStorage.setItem("role", "");
+        localStorage.setItem("isLogIn", true);
         return this.props.authService.redirect({
         sessionToken: res.session.token
       });

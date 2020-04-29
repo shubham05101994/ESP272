@@ -33,10 +33,10 @@ const landingPage = class Landing extends Component {
           console.log(decoded);
           if (decoded["isPatient"] == true){
             console.log(decoded["isPatient"]);
-            localStorage.setItem("role", "patient");
+            localStorage.setItem("role", "Patient");
           } else if (decoded["isDoctor"] == true){
             console.log(decoded["isDoctor"]);
-            localStorage.setItem("role", "doctor");
+            localStorage.setItem("role", "Doctor");
           }
         }
        
