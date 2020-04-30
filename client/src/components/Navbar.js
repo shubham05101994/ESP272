@@ -175,6 +175,9 @@ class Landing extends Component {
               </li>
             </ul>
           }
+          {localStorage.role == "Doctor" ? doctor : ""}
+          {localStorage.role == "Patient" ? patient : ""}
+          {localStorage.role == "Cashier" ? cashier : ""}
           {
             this.state.isLogIn == 'true' &&
             <ul className="navbar-nav">
@@ -185,9 +188,7 @@ class Landing extends Component {
               </li>
             </ul>
           }
-          {localStorage.role == "Doctor" ? doctor : ""}
-          {localStorage.role == "Patient" ? patient : ""}
-          {localStorage.role == "Cashier" ? cashier : ""}
+          
 
         </div>
       </nav>

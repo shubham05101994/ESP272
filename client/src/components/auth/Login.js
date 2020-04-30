@@ -32,9 +32,18 @@ export default withOktaAuth(class Login extends Component {
     if (res.status === 'SUCCESS') {
         this.checkAuthentication();
         localStorage.setItem("isLogIn", true);
+        if (res.length > 0 && res[0].idToken) {
+          return this.props.authService.redirect({
+            sessionToken: res[0].idToken    
+        }); 
+      } else  {
         return this.props.authService.redirect({
-        sessionToken: res.session.token
-      });
+          sessionToken: res.session.token
+        });
+  
+
+      }
+
    } else {
     // The user can be in another authentication state that requires further action.
     // For more information about these states, see:

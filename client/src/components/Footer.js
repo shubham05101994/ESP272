@@ -6,9 +6,9 @@ class Footer extends Component {
     }
     render() { 
         return ( 
-        <footer class="page-footer font-small blue" style={{backgroundColor:'brown',color:'white',width:'100%',position:'absolute'}}>
+        <footer className="page-footer font-small blue" style={{backgroundColor:'brown',color:'white',width:'100%',position:'absolute'}}>
 
-        <div class="text-center" style={{paddingTop:'0.5%',paddingBottom:'0.5%'}}>© 2019 Copyright:
+        <div className="text-center" style={{paddingTop:'0.5%',paddingBottom:'0.5%'}}>© 2019 Copyright:
           <a href="https://medicoconnect.xyz" style={{color:'white',textDecoration:'underline'}}> medicoconnect.xyz</a>
         </div>
        
