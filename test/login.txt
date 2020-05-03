@@ -1,0 +1,5 @@
+Patient: test@gmail.com
+Password: Shubham1234!
+
+Doctor: test1@gmail.com
+Password: Shubham1234!
