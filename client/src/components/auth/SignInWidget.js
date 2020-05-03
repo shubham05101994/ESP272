@@ -6,13 +6,10 @@ import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 class SignInWidget extends Component {
   componentDidMount() {
     const el = ReactDOM.findDOMNode(this);
-    /* config.idps = [
-      { type: 'FACEBOOK', id: '2783259165077171' }
-    ];
-    config.idpDisplay = "SECONDARY"; */
-
+ 
     this.widget = new OktaSignIn ({
       baseUrl: this.props.baseUrl,
+      logo: 'Medico.png',
       
       clientId: '0oaagvaiqddotHkMn4x6', 
       authParams: {
@@ -24,7 +21,8 @@ class SignInWidget extends Component {
        
       },
       idps : [
-        { type: 'FACEBOOK', id: '0oaanlwmpFqJEo92r4x6' }
+        { type: 'FACEBOOK', id: '0oaanlwmpFqJEo92r4x6' },
+        { type: 'Google', id: '0oaarsfakSQOExcYk4x6' }
       ],
       idpDisplay : "SECONDARY",
       i18n: {
