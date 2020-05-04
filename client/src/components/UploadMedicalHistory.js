@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import S3 from 'react-s3';
-//import config from './config.json';
+import AWSConfigObj from './Configuration/awsConfig.json';
 
 
 const configuration = {
-  bucketName:  "cmpe272medico",
-  region: "us-east-2",
-  accessKeyId: "AKIAJ7XLPRT2WRZBKHDQ",
-  secretAccessKey: "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"
+  bucketName:  AWSConfigObj.config.bucketName,
+  region: AWSConfigObj.config.region,
+  accessKeyId: AWSConfigObj.config.accessKeyId,
+  secretAccessKey: AWSConfigObj.config.secretAccessKey
 }
 class UploadMedicalHistory extends Component {
 

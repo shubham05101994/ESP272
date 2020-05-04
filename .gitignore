@@ -8,6 +8,8 @@ node_modules
 client/node_modules 
 client/src/components/config.json
 database/dbConfig.json
+routes/awsConfig.json
+client/src/components/Configuration/awsConfig.json
  
 .vscode
 # testing
