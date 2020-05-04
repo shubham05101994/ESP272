@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import logo from "../Medico.jpg"
 import { withOktaAuth } from '@okta/okta-react';
 import { jwt_decode } from 'jwt-decode';
+import { returnUserID } from "./UserFunctions";
 var jwtDecode = require('jwt-decode');
 
 const landingPage = class Landing extends Component {
@@ -31,6 +32,16 @@ const landingPage = class Landing extends Component {
           let idToken = res
           let decoded = jwtDecode(idToken);
           console.log(decoded);
+          //console.log("My response emailID",decoded.email);
+          localStorage.setItem("userEmail", decoded.email);
+          returnUserID(localStorage.userEmail)
+            .then(res => {
+              console.log("Check USerID", res.data[0].ID);
+              localStorage.setItem("ID",res.data[0].ID);
+            })
+            .catch(err => {
+              alert(err);
+            });
           if (decoded["isPatient"] == true){
             console.log(decoded["isPatient"]);
             localStorage.setItem("role", "Patient");
@@ -46,6 +57,8 @@ const landingPage = class Landing extends Component {
       let decoded = jwt_decode(accessToken);
       console.log(decoded); */
     }
+
+    
    
   }  
   render() {

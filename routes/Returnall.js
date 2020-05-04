@@ -4,6 +4,20 @@ const cors = require("cors");
 returnall.use(cors());
 const db = require("../database/db.js");
 
+
+returnall.get("/userID", (req, res) => {
+  db.sequelize.query('Select ID from MedicoConnect.RegisterInfos where Email = (:Email)', {
+    replacements: {Email: req.query.Email}
+  })
+.then(([results]) => {
+    res.send(results);
+})
+.catch(err => {
+    res.send("error: " + err);
+  });
+});
+
+
 returnall.get("/specialization", (req, res) => {
     db.sequelize
     .query("select distinct Specialization from MedicoConnect.DoctorInfos ")

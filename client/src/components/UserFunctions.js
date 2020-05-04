@@ -94,6 +94,26 @@ export const login = async user => {
     alert(err);
   }
 };
+
+export const returnUserID = async(email) => {
+  try{
+    const response =  axios
+      .get("returnall/userID", {
+        params: {
+          Email: email
+        }
+      });
+      console.log("My userID is", response);
+      //localStorage.setItem("ID", re);
+      return response;
+      
+  }
+  catch (err){
+    console.log(err);
+    alert(err);
+  }
+}
+
 export const returnallspecialization = async()  => {
   console.log('In Spcialization for returning all specialization');
   try {
