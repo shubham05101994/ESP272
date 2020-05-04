@@ -69,10 +69,10 @@ class DoctorAppointment extends Component {
                     Fee :{response.Fee}
                     </li>
                     <li class="list-group-item">
-                    Patient Checked :{response.PatientChecked}
+                    Patient Examined :{response.PatientChecked}
                     </li>
                     <li class="list-group-item">
-                    <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Patient Checked!!</button>        
+                    <button class="btn btn-primary" id={response.BookingID} onClick={this.onclick}>Patient Examination Done!!</button>        
                     </li>
                     <li id={response.PatientID} class="list-group-item">
                     
