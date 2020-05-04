@@ -41,4 +41,20 @@ doctorprofile.post("/", (req, res) => {
       res.send("error: " + err);
     });
 });
+
+doctorprofile.get("/doctorInfo", (req, res) => {
+  db.sequelize
+  .query('select * from MedicoConnect.DoctorInfos Where DrID = (:DrID)', {
+    replacements: {DrID: req.query.DrID}
+  })
+  .then(([results]) => {
+      res.send(results);
+      //console.log(results);
+  })
+  .catch(err => {
+      res.send("error: " + err);
+    });
+});
+
+
 module.exports=doctorprofile;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { insertdoctorprofile } from "./UserFunctions";
+import { insertdoctorprofile,fetchdoctorprofile } from "./UserFunctions";
 
 class DoctorRegister extends Component {
 
@@ -17,6 +17,25 @@ class DoctorRegister extends Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+      }
+
+      componentDidMount() {
+        fetchdoctorprofile(localStorage.ID)
+          .then(res => {
+            console.log("check ", res.data);
+            this.setState({
+              Degree: res.data[0].Degree,
+              Specialization: res.data[0].Specialization,
+              YearOfExperience: res.data[0].YearOfExperience,
+              Address: res.data[0].Address,
+              Contact: res.data[0].Contact,
+              Fee: res.data[0].Fee,
+              Gender: res.data[0].Gender
+            });
+          })
+          .catch(err => {
+            alert(err);
+          });
       }
 
       onChange(e) {

@@ -74,6 +74,26 @@ export const insertdoctorprofile =  async doctorprofiledetails => {
   // console.log(response);
  };
 
+
+ export const fetchdoctorprofile =  async(doctorID) => {
+  try {
+     const response =  axios
+       .get("doctorprofile/doctorInfo", {
+        params: {
+          DrID: doctorID
+        }
+       });
+       //console.log("Doctor Info",response)
+     return response;
+   }
+   catch (err) {
+     console.log(err);
+     alert(err);
+   }
+  // console.log(response);
+ };
+
+
 export const login = async user => {
   try {
     const response = await axios
