@@ -3,13 +3,15 @@ const AWSreturn = express.Router();
 const cors = require("cors");
 var AWS = require("aws-sdk");
 
+var AWSConfigObj = require('./awsConfig.json')
+
 AWSreturn.use(cors());
 
 let awsConfig = {
-    region: "us-east-2",
-    endpoint: "http://dynamodb.us-east-2.amazonaws.com",
-    accessKeyId: "AKIAIFEI57Q4IBRBGMQQ",
-    secretAccessKey: "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"
+    region: AWSConfigObj.config.region,
+    endpoint: AWSConfigObj.config.endpoint,
+    accessKeyId: AWSConfigObj.config.accessKeyId,
+    secretAccessKey: AWSConfigObj.config.secretAccessKey
 };
 AWS.config.update(awsConfig);
 var docClient = new AWS.DynamoDB.DocumentClient();
