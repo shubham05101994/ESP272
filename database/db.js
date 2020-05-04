@@ -1,8 +1,12 @@
+var dbConfigObj = require('./dbConfig.json')
 const Sequelize = require("sequelize");
 const db = {};
-const sequelize = new Sequelize("MedicoConnect", "admin", "Medico123", {
-  host: "database-2.c7gf8ktybcod.us-west-1.rds.amazonaws.com",
-  port: 3306,
+const sequelize = new Sequelize(
+    dbConfigObj.DBConfig.DB_NAME,
+    dbConfigObj.DBConfig.DB_USERNAME,
+    dbConfigObj.DBConfig.DB_PASSWORD, {
+  host: dbConfigObj.DBConfig.HOST,
+  port: dbConfigObj.DBConfig.PORT,
   dialect: "mysql",
   dialectOptions: {
     ssl:'Amazon RDS'
