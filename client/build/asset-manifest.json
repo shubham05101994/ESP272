@@ -1,25 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.9dc2689d.chunk.css",
-    "main.js": "/static/js/main.26d6ff4c.chunk.js",
-    "main.js.map": "/static/js/main.26d6ff4c.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.b240f91f.js",
-    "runtime-main.js.map": "/static/js/runtime-main.b240f91f.js.map",
-    "static/css/2.b90ce945.chunk.css": "/static/css/2.b90ce945.chunk.css",
-    "static/js/2.8e645a3f.chunk.js": "/static/js/2.8e645a3f.chunk.js",
-    "static/js/2.8e645a3f.chunk.js.map": "/static/js/2.8e645a3f.chunk.js.map",
+    "main.css": "/static/css/main.d161862d.chunk.css",
+    "main.js": "/static/js/main.8dd8bd1f.chunk.js",
+    "main.js.map": "/static/js/main.8dd8bd1f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.597b7f10.js",
+    "runtime-main.js.map": "/static/js/runtime-main.597b7f10.js.map",
+    "static/css/2.580b7b83.chunk.css": "/static/css/2.580b7b83.chunk.css",
+    "static/js/2.44f9c0cc.chunk.js": "/static/js/2.44f9c0cc.chunk.js",
+    "static/js/2.44f9c0cc.chunk.js.map": "/static/js/2.44f9c0cc.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.8a68bfa00722bdb69d7df4184aec5a04.js": "/precache-manifest.8a68bfa00722bdb69d7df4184aec5a04.js",
+    "precache-manifest.e5711edceafed9b799b74c48f1976cd6.js": "/precache-manifest.e5711edceafed9b799b74c48f1976cd6.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.b90ce945.chunk.css.map": "/static/css/2.b90ce945.chunk.css.map",
-    "static/css/main.9dc2689d.chunk.css.map": "/static/css/main.9dc2689d.chunk.css.map",
-    "static/media/Medico.jpg": "/static/media/Medico.6425e3b4.jpg"
+    "static/css/2.580b7b83.chunk.css.map": "/static/css/2.580b7b83.chunk.css.map",
+    "static/css/main.d161862d.chunk.css.map": "/static/css/main.d161862d.chunk.css.map",
+    "static/js/2.44f9c0cc.chunk.js.LICENSE.txt": "/static/js/2.44f9c0cc.chunk.js.LICENSE.txt",
+    "static/media/Medico.jpg": "/static/media/Medico.6425e3b4.jpg",
+    "static/media/okta-sign-in.min.css": "/static/media/yubikeyDemo.f10c9db1.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b240f91f.js",
-    "static/css/2.b90ce945.chunk.css",
-    "static/js/2.8e645a3f.chunk.js",
-    "static/css/main.9dc2689d.chunk.css",
-    "static/js/main.26d6ff4c.chunk.js"
+    "static/js/runtime-main.597b7f10.js",
+    "static/css/2.580b7b83.chunk.css",
+    "static/js/2.44f9c0cc.chunk.js",
+    "static/css/main.d161862d.chunk.css",
+    "static/js/main.8dd8bd1f.chunk.js"
   ]
 }

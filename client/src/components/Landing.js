@@ -63,6 +63,7 @@ const landingPage = class Landing extends Component {
   }  
   render() {
     const { user } = this.state;
+    localStorage.setItem("isLogIn", 'false');
     return (
       <div className="">
         <div className="jumbotron color_back mt-4" style={{marginBottom:'0px !important'}}>
