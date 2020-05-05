@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aws-amplify": "^3.0.10",
+    "aws-amplify-react": "^4.1.9",
     "@okta/okta-auth-js": "^3.1.0",
     "@okta/okta-react": "^3.0.1",
     "@okta/okta-signin-widget": "^3.9.2",

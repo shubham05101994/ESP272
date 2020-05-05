@@ -1,0 +1,19 @@
+{
+	"ProjectName": "client",
+	"ProjectPath": "D:\\Master's\\Cloud Services\\Group Project\\Cloud Services 282 Project\\client",
+	"InitializationTime": "2020-05-03-18-17-15",
+	"LastConfigurationTime": "2020-05-03-18-16-19",
+	"LastNPMInstallTime": "",
+	"FrontendLastBuildTime": "",
+	"LastPublishTime": "",
+	"BackendLastSyncTime": "2020-05-04-01-08-30",
+	"BackendLastBuildTime": "2020-05-03-18-17-40",
+	"BackendLastPushTime": "2020-05-03-18-18-02",
+	"BackendProjectID": "20900456-cee1-40f2-a9d5-86a8f63012d0",
+	"BackendProjectName": "client-2020-05-03-18-16-19",
+	"BackendProjectConsoleUrl": "https://console.aws.amazon.com/mobilehub/home#/20900456-cee1-40f2-a9d5-86a8f63012d0/build",
+	"BackendProjectCreationTime": "2020-05-04T01:16:20.370Z",
+	"BackendProjectLastUpdatedTime": "2020-05-04T01:18:39.261Z",
+	"Framework": "react",
+	"BackendLastSyncToDevTime": "2020-05-04-01-08-33"
+}

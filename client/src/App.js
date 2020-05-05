@@ -16,6 +16,7 @@ import PatientBooking from "./components/PatientBookings";
 import DoctorAppointment from "./components/DoctorAppointments";
 import UploadPatientHistory from "./components/UploadMedicalHistory";
 import Doctorviewreports from "./components/doctorviewreports";
+import Chatbbot from "./components/Chatbbot";
 import Footer from "./components/Footer";
 
 export const history=require('history').createBrowserHistory()
@@ -62,6 +63,7 @@ class App extends Component {
                 <Route exact path="/doctorappointments" component={DoctorAppointment} />
                 <Route exact path="/medicalhistory" component={UploadPatientHistory} />
                 <Route exact path="/doctorreportview" component={Doctorviewreports} /> 
+                <Route exact path="/ChatBot" component={Chatbbot} />
               </div>
             </div>
           </Security>
