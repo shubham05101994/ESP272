@@ -76,6 +76,11 @@ class Landing extends Component {
             Upload Reports
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/ChatBot" className="nav-link">
+            ChatBot
+          </Link>
+        </li>
       </ul>
     );
     const cashier = (
