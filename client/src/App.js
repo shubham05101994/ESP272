@@ -41,7 +41,7 @@ class App extends Component {
 
           <Security issuer='https://dev-797267.okta.com/oauth2/default'
             clientId='0oaagvaiqddotHkMn4x6'
-            redirectUri={window.location.origin + '/implicit/callback'}
+            redirectUri='https://medicoconnect.com/implicit/callback'
             onAuthRequired={this.onAuthRequired}
             pkce={true} >
             <div className="App">

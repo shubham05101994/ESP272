@@ -17,7 +17,7 @@ class SignInWidget extends Component {
         scope : [
           'openid', 'email', 'profile'
         ],
-        redirectUri: 'http://localhost:3000/implicit/callback', 
+        redirectUri: 'https://medicoconnect.com/implicit/callback', 
        
       },
       idps : [
