@@ -14,5 +14,5 @@
     #sudo npm install -g nodemon pm2
     pm2 restart all
     exit
-
+ 
     EOF
