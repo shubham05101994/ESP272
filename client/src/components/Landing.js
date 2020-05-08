@@ -97,6 +97,7 @@ const landingPage = class Landing extends Component {
             <p className="">7. Application performs Uploading/Deleting patient reports.</p>
             <p className="">8. Application performs Patient checked and Viewing report.</p>
             <p className="">9. Sending Appointment booked mails</p>
+            <p>10.dafaf</p>
            
 
 
