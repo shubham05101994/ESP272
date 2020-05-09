@@ -5,6 +5,7 @@
     whoami 
     echo "after git pull code 2"
     cd ~/Project/ESP272/
+    pwd
     echo "after git pull code 3"
     sudo git pull origin master
     echo "after git pull code 4"
