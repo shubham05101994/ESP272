@@ -2,15 +2,13 @@
     echo "Running deployment script"
     ssh ubuntu@172.31.17.206 << EOF
     pwd
-    whoami
+    whoami 
     echo "after git pull code 2"
-    cd ~/Project
-    cd ~/ESP272
+    cd ~/Project/ESP272/
     echo "after git pull code 3"
     sudo git pull origin master
     echo "after git pull code 4"
     sudo npm install
-    cd ~/client
     #sudo npm install -g nodemon pm2
     pm2 restart all
     exit
