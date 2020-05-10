@@ -59,7 +59,7 @@ class PatientBooking extends Component {
                   Appointment Date :{response.AppointmentDate}
                 </li>
                 <li class="list-group-item">Fee :{response.Fee}</li>
-                <li class="list-group-item">Concent :{response.Concent}</li>
+                <li class="list-group-item">Consent :{response.Concent}</li>
               </ul>
             </div>
             
