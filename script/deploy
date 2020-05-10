@@ -9,7 +9,7 @@
     echo "after git pull code 3"
     sudo git pull origin master
     echo "after git pull code 4"
-    sudo npm install
+    #sudo npm install
     #sudo npm install -g nodemon pm2
     pm2 restart all
     exit
